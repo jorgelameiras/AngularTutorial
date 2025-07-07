@@ -1,0 +1,26 @@
+<!--
+This is an example of One-Way Data Binding
+the appointment variable which is called property is decalred and listed in the
+appointement typescript file
+
+If we declare a Appointment varaible in the ts file we can reference them like such
+
+<p>{{appointment.id}}</p>
+<p>{{appointment.title}}</p>
+<p>{{appointment.date}}</p>
+
+-->
+
+<!--
+Now we are creating the input fields for the user to enter the information
+about their appointment. We can do this here or in TypeScript does not matter 
+
+This is an example of two-way data binding 
+-->
+
+
+<div>
+    <input [(ngModel)]="newAppointmentTitle" placeholder="Appointment description">
+    <input [(ngModel)]="newAppointmentDate" type="date" placeholder="Appointment date">
+    <button>Add</button>
+</div>
