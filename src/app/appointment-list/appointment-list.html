@@ -22,5 +22,21 @@ This is an example of two-way data binding
 <div>
     <input [(ngModel)]="newAppointmentTitle" placeholder="Appointment description">
     <input [(ngModel)]="newAppointmentDate" type="date" placeholder="Appointment date">
-    <button>Add</button>
+    <!--
+    Here below we are adding the fuction we created in "appointment-list.ts" to 
+    perform whatever we want when the button click because we specified that beloww
+    -->
+    <button (click)="addApointment() ">Add</button>
 </div>
+
+<ul>
+    <!--
+    We want to have the freemdom to create many items, therefore, we will make use of Angular
+    feature to create a loop for this list
+    -->
+    <li *ngFor="let appointment of appointments; index as i">
+        <!--                                      Here we are pipping this data to match our style-->
+        {{appointment.title}} {{appointment.date | date:'dd.MM.yyyy'}}
+        <button (click)="deleteAppointment(i)">Delete</button>
+    </li>
+</ul>
