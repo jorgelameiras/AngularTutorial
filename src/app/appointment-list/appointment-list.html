@@ -12,31 +12,54 @@ If we declare a Appointment varaible in the ts file we can reference them like s
 -->
 
 <!--
+Styling the page with boostrap
+-->
+
+<div class="container">
+
+
+    <div class="card mt-3">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center">Create new appointment</h2>
+            </div>
+        </div>
+        
+<!--
 Now we are creating the input fields for the user to enter the information
 about their appointment. We can do this here or in TypeScript does not matter 
 
 This is an example of two-way data binding 
 -->
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <input class="form-control" [(ngModel)]="newAppointmentTitle" placeholder="Appointment description">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="newAppointmentDate" type="date" placeholder="Appointment date">
+            </div>
+            <div class="col-md-2">
+<!--
+Here below we are adding the fuction we created in "appointment-list.ts" to 
+perform whatever we want when the button click because we specified that beloww
+-->
+                <button class="btn btn-primary w-100" (click)="addApointment() ">Add</button>
+            </div>
+        </div>
+    </div>
 
+    <h2 class="text-center mt-5">Appointments</h2>
 
-<div>
-    <input [(ngModel)]="newAppointmentTitle" placeholder="Appointment description">
-    <input [(ngModel)]="newAppointmentDate" type="date" placeholder="Appointment date">
-    <!--
-    Here below we are adding the fuction we created in "appointment-list.ts" to 
-    perform whatever we want when the button click because we specified that beloww
-    -->
-    <button (click)="addApointment() ">Add</button>
+    <ul class="list-group mt-3">
+<!--
+We want to have the freemdom to create many items, therefore, we will make use of Angular
+feature to create a loop for this list
+-->
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let appointment of appointments; index as i">
+            <!--                                      Here we are pipping this data to match our style-->
+            {{appointment.title}} {{appointment.date | date:'dd.MM.yyyy'}}
+            <button class="btn btn-danger" (click)="deleteAppointment(i)">Delete</button>
+        </li>
+    </ul>
+
 </div>
-
-<ul>
-    <!--
-    We want to have the freemdom to create many items, therefore, we will make use of Angular
-    feature to create a loop for this list
-    -->
-    <li *ngFor="let appointment of appointments; index as i">
-        <!--                                      Here we are pipping this data to match our style-->
-        {{appointment.title}} {{appointment.date | date:'dd.MM.yyyy'}}
-        <button (click)="deleteAppointment(i)">Delete</button>
-    </li>
-</ul>
